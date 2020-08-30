@@ -4,6 +4,8 @@ import java.util.regex.Pattern
 
 interface ScmRepository {
 
+    String id();
+
     void fetchTags(ScmIdentity identity, String remoteName)
 
     void tag(String tagName)

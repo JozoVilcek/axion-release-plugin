@@ -7,6 +7,7 @@ import pl.allegro.tech.build.axion.release.domain.properties.VersionProperties
 import pl.allegro.tech.build.axion.release.domain.scm.ScmPosition
 import pl.allegro.tech.build.axion.release.domain.scm.ScmRepository
 import pl.allegro.tech.build.axion.release.domain.scm.TagsOnCommit
+import pl.allegro.tech.build.axion.release.infrastructure.git.ScmCache;
 
 import java.util.regex.Pattern
 
@@ -46,7 +47,7 @@ class VersionResolver {
             versions.onReleaseTag,
             versions.onNextVersionTag,
             versions.noTagsFound,
-            repository.checkUncommittedChanges()
+            ScmCache.getInstance().checkUncommittedChanges(repository)
         )
 
         Map finalVersion = versionFactory.createFinalVersion(scmState, versions.current)
